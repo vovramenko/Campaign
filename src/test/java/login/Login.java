@@ -28,5 +28,6 @@ public class Login {
 
         Assert.assertTrue("Avatar is not present", webDriver.findElement(By.xpath(".//img[@class= 'avatar']")).isDisplayed());
         webDriver.quit();
+        //t
     }
 }
