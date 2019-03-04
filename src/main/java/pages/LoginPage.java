@@ -27,9 +27,9 @@ public class LoginPage extends ParentPage{
     public void openPage() {
         try {
             webDriver.get("http://bahnhof-backend.dev02.st/login");
-            System.out.println("Lofin page was opened");
+            logger.info("Login page was opened");
         }catch (Exception e){
-            System.out.println("Can not open Login Page" + e);
+            logger.error("Can not open Login Page" + e);
             Assert.fail("Can not open Login Page" + e);
         }
     }
@@ -66,5 +66,12 @@ public class LoginPage extends ParentPage{
 //            Assert.fail("Can not work element" + e);
 //        }
         actionsWithOurElements.clickONElement(button);
+    }
+
+    public void login(String login, String password) {
+        openPage();
+        enterTextInToInputLogin(login);
+        enterTextInToInputPass(password);
+        clickOnButtonSubmit();
     }
 }
