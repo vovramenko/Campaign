@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,9 +22,12 @@ public class LoginPage extends ParentPage{
     @FindBy (name = "password")
     private WebElement inputPass;
 
-    @FindBy (xpath = (".//button[@type = 'submit']"))
+    @FindBy (xpath = ".//button[@type = 'submit']")
     private WebElement button;
+    @FindBy (xpath = ".//div[@class='alert alert-danger']")
+    private  WebElement InvalidCredentials;
 
+    @Step
     public void openPage() {
         try {
             webDriver.get("http://bahnhof-backend.dev02.st/login");
@@ -33,7 +37,7 @@ public class LoginPage extends ParentPage{
             Assert.fail("Can not open Login Page" + e);
         }
     }
-
+    @Step
     public void enterTextInToInputLogin(String login) {
 //        try{
 //            inputEmail.clear();
@@ -45,6 +49,7 @@ public class LoginPage extends ParentPage{
 //        }
         actionsWithOurElements.enterTextInToElement(inputEmail, login);
     }
+    @Step
     public void enterTextInToInputPass(String pass) {
 //        try{
 //            inputPass.clear();
@@ -56,6 +61,7 @@ public class LoginPage extends ParentPage{
 //        }
         actionsWithOurElements.enterTextInToElement(inputPass, pass);
     }
+    @Step
     public void clickOnButtonSubmit(){
 //        try{
 //            button.click();
@@ -67,11 +73,16 @@ public class LoginPage extends ParentPage{
 //        }
         actionsWithOurElements.clickONElement(button);
     }
-
+    @Step
     public void login(String login, String password) {
         openPage();
         enterTextInToInputLogin(login);
         enterTextInToInputPass(password);
         clickOnButtonSubmit();
     }
+    public void checkError (){
+        actionsWithOurElements.isElementPresent(InvalidCredentials);
+    }
+
+
 }

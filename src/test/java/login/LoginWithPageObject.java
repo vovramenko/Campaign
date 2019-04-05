@@ -7,18 +7,27 @@ public class LoginWithPageObject extends ParentTest {
     @Test
     public void valideLogin(){
         loginPage.openPage();
-        loginPage.enterTextInToInputLogin("admin@kntele.com");
-        loginPage.enterTextInToInputPass("kntelecom");
+        loginPage.enterTextInToInputLogin("test.kntelecom@gmail.com");
+        loginPage.enterTextInToInputPass("ergrteh65ytqrwert");
         loginPage.clickOnButtonSubmit();
 
         checkExpectedResult("Avatar is not present",
-                homePage.isAvatarPresent())
+                privatePage.isAvatarPresent())
         ;
     }
-    @Test
-    public  void  invalidLogin(){
-        loginPage.login("xxxx", "kntelecom");
-        checkExpectedResult("Avatar shold not present",
-                !homePage.isAvatarPresent());
-    }
+//    @Test
+//    public  void  invalidLogin(){
+//        loginPage.login("xxxx", "kntelecom");
+//                checkExpectedResult("Avatar shold not present",
+//                !privatePage.isAvatarPresent());
+//
+//    }
+//    @Test
+//    public  void  invalidPass(){
+//        loginPage.login("test.kntelecom@gmail.com", "1");
+//        loginPage.checkError();
+//        checkExpectedResult("Avatar shold not present",
+//                !privatePage.isAvatarPresent());
+//
+//    }
 }
