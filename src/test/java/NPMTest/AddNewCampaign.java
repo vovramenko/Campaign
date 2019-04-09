@@ -31,7 +31,6 @@ public class AddNewCampaign extends ParentTest {
     public void addNewCampaignVPN()  {
         privatePage.createGeneralCampaign(campaignName, networkName, cityName);
         createGeneralPage.clickOnSwitchVPN();
-
         checkExpectedResult("Campaign was not added", campaignsPage.isCampaignInList(campaignName));
     }
     @Severity(SeverityLevel.CRITICAL)

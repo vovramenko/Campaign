@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CampaignsPage extends ParentPage{
@@ -46,9 +47,10 @@ public class CampaignsPage extends ParentPage{
         int counter = 0;
 //        CreateGeneralPage createGeneralPage = new CreateGeneralPage(webDriver);
         while (isCampaignInList(campaignName)){
-
-            clickOnButtonDelete();
+            actionsWithOurElements.isElementPresent(By.xpath(".//a[contains(text(),'"+campaignName+"')]"));
+            actionsWithOurElements.clickONElement(By.xpath(".//div[@id='campaigns']//tr[.//a[contains(text(),'"+campaignName+"')]]//i [@data-name = 'actions-cell-delete-button']"));
             clickOnButtonOk();
+            Utils.waitABit(1000);
 
             counter ++;
             if (counter > 100){
@@ -59,7 +61,7 @@ public class CampaignsPage extends ParentPage{
     @Step
     private void clickOnButtonOk() {
         try{
-        actionsWithOurElements.isElementPresent(By.xpath(".//main[@class='modal-body' and contains(text(),'testCampaign')]"));
+//        actionsWithOurElements.isElementPresent(By.xpath(".//main[@class='modal-body' and contains(text(),'"+campaignName+"')]"));
         actionsWithOurElements.isElementPresent(By.xpath(".//div[@class = 'modal-dialog']//button[@class ='btn btn-save']"));
         actionsWithOurElements.clickONElement(By.xpath(".//div[@class = 'modal-dialog']//button[@class ='btn btn-save']"));
         logger.info("Campain was deleted");
@@ -67,11 +69,7 @@ public class CampaignsPage extends ParentPage{
             logger.error("Can not work with element" + e);
             Assert.fail("Can not work with element" + e);}
     }
-    @Step
-    public void clickOnButtonDelete() {
-//        actionsWithOurElements.isElementPresent(By.xpath("//a[contains(text(),'testCampaign')]"));
-                actionsWithOurElements.clickONElement(By.xpath(".//div[@id='campaigns']//tr[.//a[contains(text(),'testCampaign')]]//i [@data-name = 'actions-cell-delete-button']"));
-    }
+
     @Step
     public void createGeneralCampaign(String campaignName)  {
         clickOnTabCampaigns();
@@ -80,5 +78,3 @@ public class CampaignsPage extends ParentPage{
         clickOnSubButtonCreateGeneralCampaign();
     }
 }
-////button[@class='btn btn-primary' and contains(text(), 'Submit')]
-//main[@class='modal-body' and contains(text(),'testCampaign')]

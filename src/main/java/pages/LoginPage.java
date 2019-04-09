@@ -51,26 +51,10 @@ public class LoginPage extends ParentPage{
     }
     @Step
     public void enterTextInToInputPass(String pass) {
-//        try{
-//            inputPass.clear();
-//            inputPass.sendKeys(pass);
-//            System.out.println(pass + "was input");
-//        }catch (Exception e){
-//            System.out.println("Can not work element" + e);
-//            Assert.fail("Can not work element" + e);
-//        }
         actionsWithOurElements.enterTextInToElement(inputPass, pass);
     }
     @Step
     public void clickOnButtonSubmit(){
-//        try{
-//            button.click();
-//            System.out.println("Button Submit was clicked");
-//
-//        }catch (Exception e){
-//            System.out.println("Can not work element" + e);
-//            Assert.fail("Can not work element" + e);
-//        }
         actionsWithOurElements.clickONElement(button);
     }
     @Step
