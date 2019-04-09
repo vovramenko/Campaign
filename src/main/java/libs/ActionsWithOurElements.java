@@ -50,6 +50,7 @@ public class ActionsWithOurElements {
     }
     public boolean isElementPresent(WebElement webElement){
         try {
+            wait20.until(ExpectedConditions.elementToBeClickable(webElement));
             boolean isDisplayed = webElement.isDisplayed();
             logger.info("Element is displayed > " + isDisplayed);
             return isDisplayed;
@@ -58,6 +59,8 @@ public class ActionsWithOurElements {
             return false;
         }
     }
+
+
     public void selectTextInDropDown(WebElement element, String text){
         try{
             wait10.until(ExpectedConditions.elementToBeClickable(element));
@@ -85,6 +88,7 @@ public class ActionsWithOurElements {
             return false;
         }
     }
+
     public void selectValueInNewtorkDD(WebElement element, String networkName){
         try{
             element.clear();

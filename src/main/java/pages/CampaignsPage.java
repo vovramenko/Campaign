@@ -46,9 +46,10 @@ public class CampaignsPage extends ParentPage{
         int counter = 0;
 //        CreateGeneralPage createGeneralPage = new CreateGeneralPage(webDriver);
         while (isCampaignInList(campaignName)){
+
             clickOnButtonDelete();
             clickOnButtonOk();
-            Utils.waitABit(3000);
+
             counter ++;
             if (counter > 100){
                 Assert.fail("There are more than 100 spare");
@@ -59,8 +60,8 @@ public class CampaignsPage extends ParentPage{
     private void clickOnButtonOk() {
         try{
         actionsWithOurElements.isElementPresent(By.xpath(".//main[@class='modal-body' and contains(text(),'testCampaign')]"));
-        actionsWithOurElements.clickONElement(
-                By.xpath(".//div[@class = 'modal-dialog']//button[@class ='btn btn-save']"));
+        actionsWithOurElements.isElementPresent(By.xpath(".//div[@class = 'modal-dialog']//button[@class ='btn btn-save']"));
+        actionsWithOurElements.clickONElement(By.xpath(".//div[@class = 'modal-dialog']//button[@class ='btn btn-save']"));
         logger.info("Campain was deleted");
     }catch (Exception e){
             logger.error("Can not work with element" + e);
@@ -68,9 +69,8 @@ public class CampaignsPage extends ParentPage{
     }
     @Step
     public void clickOnButtonDelete() {
-                actionsWithOurElements.clickONElement(
-                By.xpath(".//div[@id='campaigns']//tr[.//a[contains(text(),'testCampaign')]]//i [@data-name = 'actions-cell-delete-button']"));
-
+//        actionsWithOurElements.isElementPresent(By.xpath("//a[contains(text(),'testCampaign')]"));
+                actionsWithOurElements.clickONElement(By.xpath(".//div[@id='campaigns']//tr[.//a[contains(text(),'testCampaign')]]//i [@data-name = 'actions-cell-delete-button']"));
     }
     @Step
     public void createGeneralCampaign(String campaignName)  {

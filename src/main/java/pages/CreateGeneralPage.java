@@ -73,6 +73,8 @@ public class CreateGeneralPage extends ParentPage{
     private By buttonOk;
     @FindBy (xpath = ".//div[@data-category-name= 'BB']//div[@class = 'b2']")
     private WebElement switchBB;
+    @FindBy (xpath = ".//div [@data-vv-name = 'networks-count']/div[@class = 'multiselect__select']")
+    private By dropDownbutton;
 //    @FindBy (xpath = ".//div[@data-category-name = 'VPN']//div[@class = 'b2']")
 //    private By switchVPN;
 //    @FindBy (xpath = ".//div[@data-category-name = 'AB']//div[@class = 'b2']")
@@ -98,7 +100,7 @@ public class CreateGeneralPage extends ParentPage{
     }
 
     @Step
-    public void chooseStartDate(String startDateType) {
+    public void chooseStartDate() {
         actionsWithOurElements.clickONElement(startDateDDType);
     }
 
@@ -110,12 +112,16 @@ public class CreateGeneralPage extends ParentPage{
     @Step
     public void clickOnDDNetworks(String networkName) {
               // нужно сделать проверку что выпадающий список подтянул данные
+
+//        actionsWithOurElements.clickONElement(dropDownbutton);
+        actionsWithOurElements.isElementPresent(dropDownNetwork);
         actionsWithOurElements.clickONElement(dropDownNetwork);
         actionsWithOurElements.selectValueInNewtorkDD(inputNetworkName, networkName);
     }
 
     @Step
     public void clickOnDDCities(String cityName) {
+        actionsWithOurElements.isElementPresent(dropDownCity);
         actionsWithOurElements.clickONElement(dropDownCity);
         actionsWithOurElements.selectValueInCitiesDD(inputCityName, cityName);
     }
@@ -149,7 +155,7 @@ public class CreateGeneralPage extends ParentPage{
     public void topInputs(String campaignName) {
         enterCampaignName(campaignName);
         clickOnButtonStartDate();
-        chooseStartDate("carrent day");
+        chooseStartDate();
         clickOnButtonEndDate();
         Utils.waitABit(500);
         chooseEndDate();
@@ -173,8 +179,6 @@ public class CreateGeneralPage extends ParentPage{
         actionsWithOurElements.clickONElement(switchBB);
     }
 
-    @Step
-    public void weitStatusElement(){}
 
     @Step
     public void clickOnSwitchVPN() {
