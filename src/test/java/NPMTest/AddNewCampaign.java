@@ -14,7 +14,7 @@ public class AddNewCampaign extends ParentTest {
      String cityName = "Halmstad";
 
      @Severity(SeverityLevel.CRITICAL)
-    @Test
+    @Test //("creating a new campaign with bredband category")
     public void addNewCampaignBB() throws InterruptedException {
         privatePage.loginInToCampaign();
         campaignsPage.createGeneralCampaign(campaignName);

@@ -27,7 +27,7 @@ public class LoginPage extends ParentPage{
     @FindBy (xpath = ".//div[@class='alert alert-danger']")
     private  WebElement InvalidCredentials;
 
-    @Step
+    @Step ("open new page")
     public void openPage() {
         try {
             webDriver.get("http://bahnhof-backend.dev02.st/login");
@@ -37,7 +37,7 @@ public class LoginPage extends ParentPage{
             Assert.fail("Can not open Login Page" + e);
         }
     }
-    @Step
+    @Step ("in the field Email enter " +"'login'")
     public void enterTextInToInputLogin(String login) {
 //        try{
 //            inputEmail.clear();
@@ -49,15 +49,15 @@ public class LoginPage extends ParentPage{
 //        }
         actionsWithOurElements.enterTextInToElement(inputEmail, login);
     }
-    @Step
+    @Step ("in the field Password enter " +"'pass'")
     public void enterTextInToInputPass(String pass) {
         actionsWithOurElements.enterTextInToElement(inputPass, pass);
     }
-    @Step
+    @Step ("click on the button Log in")
     public void clickOnButtonSubmit(){
         actionsWithOurElements.clickONElement(button);
     }
-    @Step
+    @Step ("log in")
     public void login(String login, String password) {
         openPage();
         enterTextInToInputLogin(login);

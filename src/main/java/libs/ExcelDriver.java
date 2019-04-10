@@ -77,7 +77,6 @@ public class ExcelDriver {
         return testData;
     }
 
-	
 
 	/*
 	 * Static method that retrieves testing data from Excel table and returns it
@@ -107,4 +106,6 @@ public class ExcelDriver {
 		input.close();
 		return testData;
 	}
+
+
 }

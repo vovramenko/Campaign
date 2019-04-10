@@ -11,6 +11,7 @@ public interface ConfigProperties extends Config {
 	String DATA_FILE();
 	String DATA_FILE_PATH();
 	String NetworkCities();
+	String CampaignName();
 
 	String Oracle();
 	String MySQL();
