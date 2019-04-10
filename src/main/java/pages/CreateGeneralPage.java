@@ -94,64 +94,79 @@ public class CreateGeneralPage extends ParentPage{
     public CreateGeneralPage(WebDriver webDriver) {
         super(webDriver);
     }
-    @Step
+    @Step ("enter the name of the company "+"'campaignName'")
     public void enterCampaignName(String campaignName) {
     actionsWithOurElements.enterTextInToElement(inputCampaignName, campaignName);
     }
 
-    @Step
-    public void chooseStartDate() {
-        actionsWithOurElements.clickONElement(startDateDDType);
-    }
-
-    @Step
-    public void chooseEndDate() {
-        actionsWithOurElements.clickONElement(endDateType);
-    }
-
-    @Step
-    public void clickOnDDNetworks(String networkName) {
-              // нужно сделать проверку что выпадающий список подтянул данные
-
-//        actionsWithOurElements.clickONElement(dropDownbutton);
-        actionsWithOurElements.isElementPresent(dropDownNetwork);
-        actionsWithOurElements.clickONElement(dropDownNetwork);
-        actionsWithOurElements.selectValueInNewtorkDD(inputNetworkName, networkName);
-    }
-
-    @Step
-    public void clickOnDDCities(String cityName) {
-        actionsWithOurElements.isElementPresent(dropDownCity);
-        actionsWithOurElements.clickONElement(dropDownCity);
-        actionsWithOurElements.selectValueInCitiesDD(inputCityName, cityName);
-    }
-
-    @Step
-    public void enterPercentFild(String precentField) {
-        actionsWithOurElements.enterTextInToElement(inputPercentField, precentField);
-    }
-
-    @Step
-    public void enterMonthsField(String monthField) {
-        actionsWithOurElements.enterTextInToElement(inputMonthField, monthField);
-    }
-
-    @Step
-    public void clickOnButtonCreateCampaign() {
-        actionsWithOurElements.clickONElement(buttonCreateCampaign);
-    }
-
-    @Step
+    @Step ("push the button start date")
     public void clickOnButtonStartDate() {
         actionsWithOurElements.clickONElement(buttonStartDate);
     }
 
-    @Step
+    @Step ("choose the start date")
+    public void chooseStartDate() {
+        actionsWithOurElements.clickONElement(startDateDDType);
+    }
+
+    @Step ("push the button end date")
     public void clickOnButtonEndDate() {
         actionsWithOurElements.clickONElement(buttonEndDate);
     }
 
-    @Step
+    @Step ("choose the end date")
+    public void chooseEndDate() {
+        actionsWithOurElements.clickONElement(endDateType);
+    }
+
+    @Step ("click on the drop-down list of networks and select the network " +"'networkName'"+ "in it")
+    public void clickOnDDNetworks(String networkName) {
+//        actionsWithOurElements.isElementPresent(dropDownNetwork);
+
+        actionsWithOurElements.isDDPresent(dropDownNetwork);
+        actionsWithOurElements.clickONElement(dropDownNetwork);
+        actionsWithOurElements.selectValueInNewtorkDD(inputNetworkName, networkName);
+    }
+
+    @Step ("click on the drop-down list of networks and select the network " +"'cityName'"+ " in it")
+    public void clickOnDDCities(String cityName) {
+        actionsWithOurElements.isDDPresent(dropDownCity);
+        actionsWithOurElements.clickONElement(dropDownCity);
+        actionsWithOurElements.selectValueInCitiesDD(inputCityName, cityName);
+    }
+
+    @Step ("select a category bredband and enter the data on the percentage of the discount and the number of months")
+    public void InputsInCategoryBB() {
+        actionsWithOurElements.clickONElement(checkBoxDiscountBB);
+        InputsInCategories();
+        clickOnButtonCreateCampaign();
+    }
+    @Step ( "clicks on a category bredband")
+    public void clickOnSwitchBB() {
+        actionsWithOurElements.clickONElement(switchBB);
+    }
+
+    @Step ("select input field percent the value "+"'enterPercentFild'")
+    public void enterPercentFild(String precentField) {
+        actionsWithOurElements.enterTextInToElement(inputPercentField, precentField);
+    }
+
+    @Step ("select input field months the value "+"'monthField'")
+    public void enterMonthsField(String monthField) {
+        actionsWithOurElements.enterTextInToElement(inputMonthField, monthField);
+    }
+    @Step ("enter values " + "enterPercentFild" + " and " + "enterMonthsField")
+    public void InputsInCategories(){
+        enterPercentFild("10");
+        enterMonthsField("3");
+    }
+
+    @Step ("push the button Create campaign")
+    public void clickOnButtonCreateCampaign() {
+        actionsWithOurElements.clickONElement(buttonCreateCampaign);
+    }
+
+    @Step ("choose initial values for the company such as name, start date, end date, network and city")
     public void topInputs(String campaignName) {
         enterCampaignName(campaignName);
         clickOnButtonStartDate();
@@ -161,26 +176,7 @@ public class CreateGeneralPage extends ParentPage{
         chooseEndDate();
     }
 
-    @Step
-    public void InputsInCategories(){
-        enterPercentFild("10");
-        enterMonthsField("3");
-    }
-
-    @Step
-    public void InputsInCategoryBB() {
-        actionsWithOurElements.clickONElement(checkBoxDiscountBB);
-        InputsInCategories();
-        clickOnButtonCreateCampaign();
-    }
-
-    @Step
-    public void clickOnSwitchBB() {
-        actionsWithOurElements.clickONElement(switchBB);
-    }
-
-
-    @Step
+    @Step ("select a category VPN and enter the data on the percentage of the discount and the number of months")
     public void clickOnSwitchVPN() {
         WebElement checkbox = (new WebDriverWait(this.webDriver, 10))
                 .until(ExpectedConditions.elementToBeClickable(
@@ -193,7 +189,7 @@ public class CreateGeneralPage extends ParentPage{
         clickOnButtonCreateCampaign();
     }
 
-    @Step
+    @Step ("select a category Antivirus and enter the data on the percentage of the discount and the number of months")
     public void clickOnSwitchAntivirus() {
         WebElement checkbox = (new WebDriverWait(this.webDriver, 10))
                 .until(ExpectedConditions.elementToBeClickable(By.xpath(".//div[@data-category-name = 'AB']//div[@class = 'b2']")));
@@ -204,7 +200,7 @@ public class CreateGeneralPage extends ParentPage{
 
     }
 
-    @Step
+    @Step ("select a category IP-telefoni and enter the data on the percentage of the discount and the number of months")
     public void clickOnSwitchIPtelefoni() {
         WebElement checkbox = (new WebDriverWait(this.webDriver, 10))
                 .until(ExpectedConditions.elementToBeClickable(By.xpath(".//div[@data-category-name = 'TELEPHONY']//div[@class = 'b2']")));
@@ -214,7 +210,7 @@ public class CreateGeneralPage extends ParentPage{
         clickOnButtonCreateCampaign();
     }
 
-    @Step
+    @Step ("select a category Router and enter the data on the percentage of the discount and the number of months")
     public void clickOnSwitchRouter() {
         WebElement checkbox = (new WebDriverWait(this.webDriver, 10))
                 .until(ExpectedConditions.elementToBeClickable(By.xpath(".//div[@data-category-name = 'ROUTER']//div[@class = 'b2']")));
@@ -224,7 +220,7 @@ public class CreateGeneralPage extends ParentPage{
         clickOnButtonCreateCampaign();
     }
 
-    @Step
+    @Step ("select a category Tv and enter the data on the percentage of the discount and the number of months")
     public void clickOnSwitchTv() {
         WebElement checkbox = (new WebDriverWait(this.webDriver, 10))
                 .until(ExpectedConditions.elementToBeClickable(By.xpath(".//div[@data-category-name = 'BTV']//div[@class = 'b2']")));
@@ -234,7 +230,7 @@ public class CreateGeneralPage extends ParentPage{
         clickOnButtonCreateCampaign();
     }
 
-    @Step
+    @Step ("select a category CMORE and enter the data on the percentage of the discount and the number of months")
     public void clickOnSwitchCmore() {
         WebElement checkbox = (new WebDriverWait(this.webDriver, 10))
                 .until(ExpectedConditions.elementToBeClickable(By.xpath(".//div[@data-category-name = 'CMORE']//div[@class = 'b2']")));
@@ -244,7 +240,7 @@ public class CreateGeneralPage extends ParentPage{
         clickOnButtonCreateCampaign();
     }
 
-    @Step
+    @Step ("select a category Viaplay and enter the data on the percentage of the discount and the number of months")
     public void clickOnSwitchViaplay() {
         WebElement checkbox = (new WebDriverWait(this.webDriver, 10))
                 .until(ExpectedConditions.elementToBeClickable(By.xpath(".//div[@data-category-name = 'VIAPLAY']//div[@class = 'b2']")));

@@ -2,21 +2,21 @@ package NPMTest;
 
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import libs.Utils;
 import org.junit.After;
 import org.junit.Test;
-import org.openqa.selenium.WebElement;
 import perentTest.ParentTest;
 
 public class AddNewCampaign extends ParentTest {
     final String campaignName = "testCampaign"; // Utils.getDateAndTimeFormated();
+//    String networkName;
+//    String cityName;
      String networkName = "Halmstads Stadsnät";
      String cityName = "Halmstad";
 
      @Severity(SeverityLevel.CRITICAL)
     @Test
     public void addNewCampaignBB() throws InterruptedException {
-        privatePage.loginInToCamoaign();
+        privatePage.loginInToCampaign();
         campaignsPage.createGeneralCampaign(campaignName);
         createGeneralPage.topInputs(campaignName);
         createGeneralPage.clickOnDDNetworks(networkName);

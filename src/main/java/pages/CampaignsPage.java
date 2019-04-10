@@ -25,24 +25,24 @@ public class CampaignsPage extends ParentPage{
     public CampaignsPage(WebDriver webDriver) {
         super(webDriver);
     }
-    @Step
+    @Step ("click on the tab Campaigns")
     public void clickOnTabCampaigns() {
         actionsWithOurElements.clickONElement(tabCampaigns);
     }
-    @Step
+    @Step ("click on the button Create new campaign")
     public void clickOnButtonCreateNewCampaign() {
         actionsWithOurElements.clickONElement(buttonCreateNewCampaign);
     }
-    @Step
+    @Step ("click on the button Create general campaign")
     public void clickOnSubButtonCreateGeneralCampaign() {
         actionsWithOurElements.clickONElement(subButtonCreateGeneralCampaign);
     }
-    @Step
+    @Step ("check the presence of the company " +"'campaignName' "+ "in the list")
     public boolean isCampaignInList(String campaignName) {
 
         return  actionsWithOurElements.isElementPresent(By.xpath(".//*[text()='"+campaignName+"']"));
     }
-    @Step
+    @Step ("if there is a company with the same name "+"campaignName"+" remove from the list")
     public void deletingCampaignPresent(String campaignName)  {
         int counter = 0;
 //        CreateGeneralPage createGeneralPage = new CreateGeneralPage(webDriver);
@@ -58,7 +58,7 @@ public class CampaignsPage extends ParentPage{
             }
         }
     }
-    @Step
+    @Step ("click on the button OK")
     private void clickOnButtonOk() {
         try{
 //        actionsWithOurElements.isElementPresent(By.xpath(".//main[@class='modal-body' and contains(text(),'"+campaignName+"')]"));
@@ -70,7 +70,7 @@ public class CampaignsPage extends ParentPage{
             Assert.fail("Can not work with element" + e);}
     }
 
-    @Step
+    @Step ("create General Campaign")
     public void createGeneralCampaign(String campaignName)  {
         clickOnTabCampaigns();
         deletingCampaignPresent(campaignName);

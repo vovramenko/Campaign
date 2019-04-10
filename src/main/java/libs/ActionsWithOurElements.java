@@ -14,11 +14,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ActionsWithOurElements {
     WebDriver webDriver;
     Logger logger = Logger.getLogger(getClass());
-    WebDriverWait wait15,wait10, wait20;
+    WebDriverWait wait5, wait10, wait15, wait20;
 
     public ActionsWithOurElements(WebDriver webDriver){
 
         this.webDriver = webDriver;
+        wait5 = new WebDriverWait(webDriver,5);
         wait15 = new WebDriverWait(webDriver,15);
         wait10 = new WebDriverWait(webDriver,10);
         wait20 = new WebDriverWait(webDriver,20);
@@ -50,7 +51,7 @@ public class ActionsWithOurElements {
     }
     public boolean isElementPresent(WebElement webElement){
         try {
-            wait20.until(ExpectedConditions.elementToBeClickable(webElement));
+            wait5.until(ExpectedConditions.elementToBeClickable(webElement));
             boolean isDisplayed = webElement.isDisplayed();
             logger.info("Element is displayed > " + isDisplayed);
             return isDisplayed;
@@ -85,6 +86,26 @@ public class ActionsWithOurElements {
         try{
             return isElementPresent(webDriver.findElement(xpath));
         }catch (Exception e){
+            return false;
+        }
+    }
+    public boolean isDDPresent(By xpath) {
+        try{
+            wait20.until(ExpectedConditions.elementToBeClickable(xpath));
+            return isElementPresent(webDriver.findElement(xpath));
+        }catch (Exception e){
+            logger.info("Drop-down is displayed > false");
+            return false;
+        }
+    }
+    public boolean isDDPresent(WebElement webElement){
+        try {
+            wait20.until(ExpectedConditions.elementToBeClickable(webElement));
+            boolean isDisplayed = webElement.isDisplayed();
+            logger.info("Drop-down is displayed > " + isDisplayed);
+            return isDisplayed;
+        }catch (Exception e){
+            logger.info("Drop-down is displayed > false");
             return false;
         }
     }

@@ -5,7 +5,6 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PrivatePage extends ParentPage {
@@ -23,40 +22,40 @@ public class PrivatePage extends ParentPage {
 
     @FindBy(xpath = ".//img[@class= 'avatar']")
     private WebElement avatar;
-    @Step
+    @Step ("check for avatars")
     public boolean isAvatarPresent() {
         return actionsWithOurElements.isElementPresent(avatar);
     }
 
-    @Step
+    @Step ("open the page")
     public void openThisPage() {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.login("test.kntelecom@gmail.com", "ergrteh65ytqrwert");
         Assert.assertEquals("Avatar is not present", true, isAvatarPresent());
     }
 
-    @Step
+    @Step ("click on the Menu of the Top Bar Button ")
     public void clickOnMenuTopBarButton() {
         actionsWithOurElements.clickONElement(menuTopBarButton);
     }
 
-    @Step
+    @Step ("click on the button NPM")
     public void clickOnButtonNPM() {
         actionsWithOurElements.clickONElement(buttonNPM);
     }
 
-    @Step
-    public void loginInToCamoaign() {
+    @Step ("login in to Campaign")
+    public void loginInToCampaign() {
         openThisPage();
         clickOnMenuTopBarButton();
         clickOnButtonNPM();
     }
 
-    @Step
+    @Step ("create General Campaign")
     public void createGeneralCampaign(String campaignName, String networkName, String cityName) {
         CampaignsPage campaignsPage = new CampaignsPage(webDriver);
         CreateGeneralPage createGeneralPage = new CreateGeneralPage(webDriver);
-        loginInToCamoaign();
+        loginInToCampaign();
         campaignsPage.createGeneralCampaign(campaignName);
         createGeneralPage.topInputs(campaignName);
         createGeneralPage.clickOnDDNetworks(networkName);

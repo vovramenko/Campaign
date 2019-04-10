@@ -20,10 +20,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import pages.CampaignsPage;
-import pages.CreateGeneralPage;
-import pages.PrivatePage;
-import pages.LoginPage;
+import pages.*;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -35,6 +32,7 @@ public class ParentTest {
     protected PrivatePage privatePage;
     protected CampaignsPage campaignsPage;
     protected CreateGeneralPage createGeneralPage;
+//    protected StartPage startPage;
     org.apache.log4j.Logger logger = Logger.getLogger(getClass());
     String browser = System.getProperty("browser");
 
@@ -48,6 +46,7 @@ public class ParentTest {
         privatePage = new PrivatePage(webDriver);
         campaignsPage = new CampaignsPage(webDriver);
         createGeneralPage = new CreateGeneralPage(webDriver);
+//        startPage = new StartPage(webDriver);
     }
 
 //    @After
@@ -55,7 +54,7 @@ public class ParentTest {
 //        webDriver.quit();
 //    }
 
-    @Step
+    @Step ("choose browser")
     protected void checkExpectedResult(String message,boolean actualResult){
         Assert.assertEquals(message, true, actualResult);
     }
