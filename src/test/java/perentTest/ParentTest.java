@@ -54,7 +54,7 @@ public class ParentTest {
 //        webDriver.quit();
 //    }
 
-    @Step
+    @Step ("check expected result" )
     protected void checkExpectedResult(String message,boolean actualResult){
         Assert.assertEquals(message, true, actualResult);
     }
