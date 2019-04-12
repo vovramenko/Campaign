@@ -121,12 +121,18 @@ public class CreateGeneralPage extends ParentPage{
 
     @Step ("click on the drop-down list of networks and select the network " +"'networkName'"+ "in it")
     public void clickOnDDNetworks(String networkName) {
-//        actionsWithOurElements.isElementPresent(dropDownNetwork);
-
         actionsWithOurElements.isDDPresent(dropDownNetwork);
         actionsWithOurElements.clickONElement(dropDownNetwork);
         actionsWithOurElements.selectValueInNewtorkDD(inputNetworkName, networkName);
     }
+    @Step ("click on the drop-down list of networks and select the network " +"'networkName'"+ "in it")
+    public void clickOnDDNetworksForExel(String networkName) {
+        actionsWithOurElements.isDDPresent(dropDownNetwork);
+        actionsWithOurElements.clickONElement(dropDownNetwork);
+        actionsWithOurElements.selectValueInNewtorkDD(inputNetworkName, networkName);
+    }
+
+
 
     @Step ("click on the drop-down list of networks and select the network " +"'cityName'"+ " in it")
     public void clickOnDDCities(String cityName) {

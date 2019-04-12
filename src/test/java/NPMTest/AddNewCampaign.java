@@ -23,7 +23,6 @@ public class AddNewCampaign extends ParentTest {
         createGeneralPage.clickOnDDCities(cityName);
         createGeneralPage.clickOnSwitchBB();
         createGeneralPage.InputsInCategoryBB();
-//        createGeneralPage.clickOnButtonCreateCampaign();
         checkExpectedResult("Campaign was not added",campaignsPage.isCampaignInList(campaignName));
     }
     @Severity(SeverityLevel.CRITICAL)

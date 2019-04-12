@@ -3,6 +3,7 @@ package NPMTest;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import libs.ExcelDriver;
+import org.junit.After;
 import org.junit.Test;
 import perentTest.ParentTest;
 
@@ -14,18 +15,22 @@ public class AddNewCapmainWithDataFromExcel extends ParentTest {
 
     @Severity(SeverityLevel.CRITICAL)
     @Test
-    public void addNewCampaignBB() throws IOException {
+    public void addNewCampaignBB() throws IOException  {
         ExcelDriver excelDriver = new ExcelDriver();
-        Map dataFromCampaignName = excelDriver.getData(configProperties.CampaignName(), "campaing");
-        Map dataFromNetworkCity = excelDriver.getData(configProperties.NetworkCities(),"networkscitiesData");
+        Map dataFromCampaignName = excelDriver.getData(configProperties.CampaignName(), "name");
+        Map dataFromNetworkCity = excelDriver.getData(configProperties.NetworkCities(),"networkscities");
         privatePage.loginInToCampaign();
         campaignsPage.createGeneralCampaign(dataFromCampaignName.get("name").toString());
         createGeneralPage.topInputs(dataFromCampaignName.get("name").toString());
         createGeneralPage.clickOnDDNetworks(dataFromNetworkCity.get("network").toString());
+
         createGeneralPage.clickOnDDCities(dataFromNetworkCity.get("city").toString());
         createGeneralPage.clickOnSwitchBB();
         createGeneralPage.InputsInCategoryBB();
-//        createGeneralPage.clickOnButtonCreateCampaign();
-        checkExpectedResult("Campaign was not added",campaignsPage.isCampaignInList("name"));
+//
+        checkExpectedResult("Campaign was not added",campaignsPage.isCampaignInList(dataFromCampaignName.get("name").toString()));
     }
+    @After
+    public void deletingCampaign() throws InterruptedException {
+        campaignsPage.deletingCampaignPresent("name");}
 }

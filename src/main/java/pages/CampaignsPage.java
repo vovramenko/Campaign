@@ -37,11 +37,12 @@ public class CampaignsPage extends ParentPage{
     public void clickOnSubButtonCreateGeneralCampaign() {
         actionsWithOurElements.clickONElement(subButtonCreateGeneralCampaign);
     }
-    @Step ("check the presence of the company " +"'campaignName' "+ "in the list")
+   @Step ("check the presence of the company " +"'campaignName' "+ "in the list")
     public boolean isCampaignInList(String campaignName) {
 
         return  actionsWithOurElements.isElementPresent(By.xpath(".//*[text()='"+campaignName+"']"));
     }
+
     @Step ("if there is a company with the same name "+"campaignName"+" remove from the list")
     public void deletingCampaignPresent(String campaignName)  {
         int counter = 0;
